@@ -5,6 +5,11 @@
       <a>Add Task</a>
     </menu>
   </header>
-
-  <p>Todo ...</p>
+  <p>{{user()?.name}}</p>
+  @for (task of tasks(); track task.id) {
+    <div class="task">
+      <h3>{{task.title}}</h3>
+      <p>{{task.summary}}</p>
+    </div>
+  }
 </section>

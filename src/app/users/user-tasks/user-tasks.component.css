@@ -52,3 +52,13 @@ menu a:active {
     width: auto;
   }
 }
+
+.task {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  background-color: #694f99;
+  padding: 1rem;
+  border-radius: 8px;
+}
