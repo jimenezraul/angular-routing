@@ -2,7 +2,9 @@ import { Component, computed, inject, input, OnInit, signal } from '@angular/cor
 
 import { TaskComponent } from './task/task.component';
 import { Task } from './task/task.model';
+import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
 import { TasksService } from './tasks.service';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-tasks',
@@ -13,10 +15,19 @@ import { TasksService } from './tasks.service';
 })
 export class TasksComponent {
   id = input.required<string>();
-  private taskService = inject(TasksService);
+  order = input<'asc' | 'desc'>();
+  userTasks = input<Task[]>();
+}
 
-  userTasks = computed(() => {
-    return this.taskService.allTasks().filter((task) => task.userId === this.id());
-  }
-  );
+export const TaskComponentResolver: ResolveFn<Task[]> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const taskService = inject(TasksService);
+  const id = route.paramMap.get('id');
+  return taskService.allTasks().filter((task) => task.userId === id);
+};
+
+export const UserNameResolver: ResolveFn<string> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const taskService = inject(UsersService);
+  const id = route.paramMap.get('id');
+  const user = taskService.users.find((user) => user.id === id);
+    return user ? `${user.name} Tasks` : '';
 }
