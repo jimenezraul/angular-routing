@@ -1,8 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { UsersService } from '../users.service';
 import type { User } from '../user/user.model';
-import { TasksService } from '../../tasks/tasks.service';
-import { NewTaskComponent } from '../../tasks/new-task/new-task.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
