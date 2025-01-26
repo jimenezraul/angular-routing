@@ -18,16 +18,3 @@ export class TasksComponent {
   order = input<'asc' | 'desc'>();
   userTasks = input<Task[]>();
 }
-
-export const TaskComponentResolver: ResolveFn<Task[]> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const taskService = inject(TasksService);
-  const id = route.paramMap.get('id');
-  return taskService.allTasks().filter((task) => task.userId === id);
-};
-
-export const UserNameResolver: ResolveFn<string> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const taskService = inject(UsersService);
-  const id = route.paramMap.get('id');
-  const user = taskService.users.find((user) => user.id === id);
-    return user ? `${user.name} Tasks` : '';
-}
