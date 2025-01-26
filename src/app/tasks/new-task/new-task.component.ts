@@ -12,7 +12,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
-  userId = input.required<string>();
+  id = input.required<string>();
   enteredTitle = signal('');
   enteredSummary = signal('');
   enteredDate = signal('');
@@ -27,7 +27,8 @@ export class NewTaskComponent {
         summary: this.enteredSummary(),
         date: this.enteredDate(),
       },
-      this.userId()
+      this.id()
     );
+    this.router.navigate(['users', this.id(), 'tasks'], { relativeTo: this.router.routerState.root });
   }
 }
