@@ -1,5 +1,5 @@
 <div>
-  <a [routerLink]="['/users/' + user().id]" routerLinkActive="active">
+  <a [routerLink]="['/users/' + user().id + '/tasks']" routerLinkActive="active">
     <img [src]="imagePath()" [alt]="user().name" />
     <span>{{ user().name }}</span>
   </a>

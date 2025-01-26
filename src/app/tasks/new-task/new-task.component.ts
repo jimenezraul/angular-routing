@@ -17,6 +17,7 @@ export class NewTaskComponent {
   enteredDate = signal('');
   private tasksService = inject(TasksService);
 
+
   onSubmit() {
     this.tasksService.addTask(
       {
